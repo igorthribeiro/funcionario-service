@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author igordev
  */
+@CrossOrigin(origins = "*", allowedHeaders = "*") //habilitado no controller
 @RestController
 public class FuncionarioController {
 
@@ -30,9 +31,9 @@ public class FuncionarioController {
         return "Servidor iniciado!";
     }
 
+    //@CrossOrigin(origins = "http://localhost:3000") //habilitado no método
     @RequestMapping(value = "grava", method = RequestMethod.POST)
     @ResponseBody
-    @CrossOrigin(origins = "http://localhost:3000")
     public void salva(@RequestBody Funcionario funcionario) {
         try (FuncionarioDao dao = new FuncionarioDao()) {
             if (funcionario.getCodigo() == 0) {
