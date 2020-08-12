@@ -1,9 +1,14 @@
 import { Funcionario } from '../models/index'
 import { FuncionarioService, HandlerFunction } from '../services/index';
 import { domInject, throttle } from '../helpers/decorators/index';
+import { MensagemView, FuncionariosView } from '../views/index';
+import { Funcionarios } from '../models/Funcionarios';
 
 export class FuncionarioController {
 
+    @domInject('.form')
+    private _form: JQuery
+    
     @domInject('#codigo')
     private _inputCodigo: JQuery;
 
@@ -25,27 +30,26 @@ export class FuncionarioController {
     @domInject('#salario')
     private _inputSalario: JQuery;
 
-    /*
-    private _negociacoesView = new NegociacoesView('#negociacoesView');
+    private _funcionarios = new Funcionarios();
+    private _funcionariosView = new FuncionariosView('#funcionariosView');
     private _mensagemView = new MensagemView('#mensagemView');
-    */
     private _service = new FuncionarioService();
 
-    constructor() {
-        //this._negociacoesView.update(this._negociacoes);
+    private _isOK: HandlerFunction = (res:Response) => {
+        if (res.ok) {
+            return res;
+        } else {
+            throw new Error(res.statusText);
+        }            
     }
 
+    constructor() {
+        this.lista();
+    }
+    
+
     @throttle()
-    grava() {        
-
-        const isOK: HandlerFunction = (res:Response) => {
-            if (res.ok) {
-                return res;
-            } else {
-                throw new Error(res.statusText);
-            }            
-        }
-
+    grava() {       
         const funcionario = new Funcionario(
             parseInt(this._inputCodigo.val()),
             this._inputNome.val(),
@@ -56,42 +60,27 @@ export class FuncionarioController {
             parseFloat(this._inputSalario.val())
         );
 
-        this._service.gravaFuncionario(isOK,funcionario)
+        this._service.gravaFuncionario(this._isOK,funcionario)
             .then(r => {
                 if (r == true) {
-                    alert('Gravado!')
+                    this.lista();
+                    this._mensagemView.update('Funcionario gravado!');
+                    this._form.each((i:number, e:any) => e.reset());
                 }
             });
-
-       
-        //this._negociacoesView.update(this._negociacoes);
-        //this._mensagemView.update('Negociação adicionada!');       
     } 
 
 
-    /*
     @throttle()
-    importaDados() {
-        const isOK: HandlerFunction = (res:Response) => {
-            if (res.ok) {
-                return res;
-            } else {
-                throw new Error(res.statusText);
-            }            
-        }
+    lista() {
         this._service
-            .opterNegociacoes(isOK)
-            .then(negociacoesParaImportar => {
-                const negociacoesJaImportadas = this._negociacoes.paraArray();
-                negociacoesParaImportar
-                    .filter(negociacao => 
-                        !negociacoesJaImportadas.some(jaImportada =>
-                             negociacao.ehIgual(jaImportada)))
-                    .forEach(negociacao => 
-                        this._negociacoes.adiciona(negociacao));
-                this._negociacoesView.update(this._negociacoes);
+            .listaFuncionarios(this._isOK)
+            .then(funcionarios => {
+                this._funcionarios = new Funcionarios();
+                funcionarios
+                    .forEach(funcionario => this._funcionarios.adiciona(funcionario));
+                    this._funcionariosView.update(this._funcionarios);
             });
     }
-    */
 
 }

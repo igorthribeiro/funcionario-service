@@ -12,6 +12,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -57,6 +58,15 @@ public class FuncionarioController {
         }
     }
 
+    @RequestMapping(value = "get/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public Funcionario getFuncionario(@PathVariable("id") int id) {
+        try (FuncionarioDao dao = new FuncionarioDao()) {
+            return dao.buscarId(id);
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+    }
     @RequestMapping(value = "remove", method = RequestMethod.POST)
     @ResponseBody
     public void remove(Funcionario funcioario) {

@@ -1,4 +1,4 @@
-System.register(["../models/index", "../services/index", "../helpers/decorators/index"], function (exports_1, context_1) {
+System.register(["../models/index", "../services/index", "../helpers/decorators/index", "../views/index", "../models/Funcionarios"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7,7 +7,7 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, index_3, FuncionarioController;
+    var index_1, index_2, index_3, index_4, Funcionarios_1, FuncionarioController;
     return {
         setters: [
             function (index_1_1) {
@@ -18,15 +18,22 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
             },
             function (index_3_1) {
                 index_3 = index_3_1;
+            },
+            function (index_4_1) {
+                index_4 = index_4_1;
+            },
+            function (Funcionarios_1_1) {
+                Funcionarios_1 = Funcionarios_1_1;
             }
         ],
         execute: function () {
             FuncionarioController = class FuncionarioController {
                 constructor() {
+                    this._funcionarios = new Funcionarios_1.Funcionarios();
+                    this._funcionariosView = new index_4.FuncionariosView('#funcionariosView');
+                    this._mensagemView = new index_4.MensagemView('#mensagemView');
                     this._service = new index_2.FuncionarioService();
-                }
-                grava() {
-                    const isOK = (res) => {
+                    this._isOK = (res) => {
                         if (res.ok) {
                             return res;
                         }
@@ -34,15 +41,33 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
                             throw new Error(res.statusText);
                         }
                     };
+                    this.lista();
+                }
+                grava() {
                     const funcionario = new index_1.Funcionario(parseInt(this._inputCodigo.val()), this._inputNome.val(), this._inputSexo.val(), parseInt(this._inputIdade.val()), this._inputCidade.val(), this._inputEstado.val(), parseFloat(this._inputSalario.val()));
-                    this._service.gravaFuncionario(isOK, funcionario)
+                    this._service.gravaFuncionario(this._isOK, funcionario)
                         .then(r => {
                         if (r == true) {
-                            alert('Gravado!');
+                            this.lista();
+                            this._mensagemView.update('Funcionario gravado!');
+                            this._form.each((i, e) => e.reset());
                         }
                     });
                 }
+                lista() {
+                    this._service
+                        .listaFuncionarios(this._isOK)
+                        .then(funcionarios => {
+                        this._funcionarios = new Funcionarios_1.Funcionarios();
+                        funcionarios
+                            .forEach(funcionario => this._funcionarios.adiciona(funcionario));
+                        this._funcionariosView.update(this._funcionarios);
+                    });
+                }
             };
+            __decorate([
+                index_3.domInject('.form')
+            ], FuncionarioController.prototype, "_form", void 0);
             __decorate([
                 index_3.domInject('#codigo')
             ], FuncionarioController.prototype, "_inputCodigo", void 0);
@@ -67,6 +92,9 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
             __decorate([
                 index_3.throttle()
             ], FuncionarioController.prototype, "grava", null);
+            __decorate([
+                index_3.throttle()
+            ], FuncionarioController.prototype, "lista", null);
             exports_1("FuncionarioController", FuncionarioController);
         }
     };

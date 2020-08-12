@@ -16,10 +16,18 @@ System.register([], function (exports_1, context_1) {
                             'Accept': 'application/json',
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify(funcionario.toObject())
+                        body: JSON.stringify(funcionario)
                     })
                         .then(rs => handler(rs))
                         .then(() => true)
+                        .catch((err) => {
+                        throw new Error(`Erro ao obter serviço: ${err.message}`);
+                    });
+                }
+                listaFuncionarios(handler) {
+                    return fetch(this._urlBase.concat('lista'))
+                        .then(res => handler(res))
+                        .then(res => res.json())
                         .catch((err) => {
                         throw new Error(`Erro ao obter serviço: ${err.message}`);
                     });

@@ -11,6 +11,9 @@ System.register(["./controllers/FuncionarioController"], function (exports_1, co
         execute: function () {
             controller = new FuncionarioController_1.FuncionarioController();
             $('.form').submit(controller.grava.bind(controller));
+            $('tr').click(function () {
+                alert(this.value());
+            });
         }
     };
 });
