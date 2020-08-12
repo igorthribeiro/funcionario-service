@@ -28,14 +28,23 @@ export class FuncionarioService {
 
         return fetch(this._urlBase.concat('lista'))
             .then(res => handler(res))
-            .then(res => res.json()                   
-            )
+            .then(res => res.json())
             .catch((err: Error) => {
                 throw new Error(`Erro ao obter serviço: ${err.message}`)
             });
 
     }
 
+    buscaFuncionarios(handler: HandlerFunction, id:number): Promise<Funcionario> {
+
+        return fetch(this._urlBase.concat(`get/${id}`))
+            .then(res => handler(res))
+            .then(res => res.json())
+            .catch((err: Error) => {
+                throw new Error(`Erro ao obter serviço: ${err.message}`)
+            });
+
+    }
 
 }
 

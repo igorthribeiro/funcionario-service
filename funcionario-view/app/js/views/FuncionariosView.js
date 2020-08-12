@@ -33,10 +33,10 @@ System.register(["./View"], function (exports_1, context_1) {
                             <td>${f.estado}</td>
                             <td align="right">${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(f.salario)}</td>
                             <td align="center">
-                                <img src="res/img/update.png" alt="Alterar" width="20" height="20"/>
+                                <img class="edita" value="${f.codigo}" src="res/img/update.png" alt="Alterar" width="20" height="20"/>
                             </td>
                             <td align="center">
-                                <img src="res/img/delete.png" alt="Alterar" width="20" height="20"/>
+                                <img class="deleta" src="res/img/delete.png" alt="Alterar" width="20" height="20"/>
                             </td>
                         </tr>
                     `).join('')}

@@ -46,6 +46,15 @@ export class FuncionarioController {
     constructor() {
         this.lista();
     }
+
+    @throttle()
+    busca(id: number) {
+        this._service
+            .buscaFuncionarios(this._isOK, id)
+            .then(funcionario => {
+                this._inputCodigo.val(funcionario.codigo);
+            });
+    }
     
 
     @throttle()
@@ -79,7 +88,7 @@ export class FuncionarioController {
                 this._funcionarios = new Funcionarios();
                 funcionarios
                     .forEach(funcionario => this._funcionarios.adiciona(funcionario));
-                    this._funcionariosView.update(this._funcionarios);
+                this._funcionariosView.update(this._funcionarios);
             });
     }
 

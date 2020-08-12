@@ -43,6 +43,13 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
                     };
                     this.lista();
                 }
+                busca(id) {
+                    this._service
+                        .buscaFuncionarios(this._isOK, id)
+                        .then(funcionario => {
+                        this._inputCodigo.val(funcionario.codigo);
+                    });
+                }
                 grava() {
                     const funcionario = new index_1.Funcionario(parseInt(this._inputCodigo.val()), this._inputNome.val(), this._inputSexo.val(), parseInt(this._inputIdade.val()), this._inputCidade.val(), this._inputEstado.val(), parseFloat(this._inputSalario.val()));
                     this._service.gravaFuncionario(this._isOK, funcionario)
@@ -89,6 +96,9 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
             __decorate([
                 index_3.domInject('#salario')
             ], FuncionarioController.prototype, "_inputSalario", void 0);
+            __decorate([
+                index_3.throttle()
+            ], FuncionarioController.prototype, "busca", null);
             __decorate([
                 index_3.throttle()
             ], FuncionarioController.prototype, "grava", null);
