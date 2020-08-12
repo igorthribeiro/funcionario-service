@@ -48,6 +48,12 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
                         .buscaFuncionarios(this._isOK, id)
                         .then(funcionario => {
                         this._inputCodigo.val(funcionario.codigo);
+                        this._inputNome.val(funcionario.nome);
+                        this._inputSexo.val(funcionario.sexo);
+                        this._inputIdade.val(funcionario.idade);
+                        this._inputCidade.val(funcionario.cidade);
+                        this._inputEstado.val(funcionario.estado);
+                        this._inputSalario.val(funcionario.salario);
                     });
                 }
                 grava() {
@@ -56,7 +62,21 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
                         .then(r => {
                         if (r == true) {
                             this.lista();
+                            this._mensagemView.mostrar();
                             this._mensagemView.update('Funcionario gravado!');
+                            this._mensagemView.apagar();
+                            this._form.each((i, e) => e.reset());
+                        }
+                    });
+                }
+                remove(id) {
+                    this._service.removeFuncionario(this._isOK, id)
+                        .then(r => {
+                        if (r == true) {
+                            this.lista();
+                            this._mensagemView.mostrar();
+                            this._mensagemView.update('Funcionario excluido!');
+                            this._mensagemView.apagar();
                             this._form.each((i, e) => e.reset());
                         }
                     });
@@ -69,6 +89,14 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
                         funcionarios
                             .forEach(funcionario => this._funcionarios.adiciona(funcionario));
                         this._funcionariosView.update(this._funcionarios);
+                        $('.edita').click((e) => {
+                            let img = e.target;
+                            this.busca(parseInt(img.getAttribute('value')));
+                        });
+                        $('.deleta').click((e) => {
+                            let img = e.target;
+                            this.remove(parseInt(img.getAttribute('value')));
+                        });
                     });
                 }
             };
@@ -102,6 +130,9 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
             __decorate([
                 index_3.throttle()
             ], FuncionarioController.prototype, "grava", null);
+            __decorate([
+                index_3.throttle()
+            ], FuncionarioController.prototype, "remove", null);
             __decorate([
                 index_3.throttle()
             ], FuncionarioController.prototype, "lista", null);

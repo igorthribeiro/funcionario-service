@@ -31,7 +31,7 @@ export class FuncionariosView extends View<Funcionarios> {
                                 <img class="edita" value="${f.codigo}" src="res/img/update.png" alt="Alterar" width="20" height="20"/>
                             </td>
                             <td align="center">
-                                <img class="deleta" src="res/img/delete.png" alt="Alterar" width="20" height="20"/>
+                                <img class="deleta" value="${f.codigo}" src="res/img/delete.png" alt="Alterar" width="20" height="20"/>
                             </td>
                         </tr>
                     `

@@ -40,6 +40,14 @@ System.register([], function (exports_1, context_1) {
                         throw new Error(`Erro ao obter serviço: ${err.message}`);
                     });
                 }
+                removeFuncionario(handler, id) {
+                    return fetch(this._urlBase.concat(`remove/${id}`))
+                        .then(rs => handler(rs))
+                        .then(() => true)
+                        .catch((err) => {
+                        throw new Error(`Erro ao obter serviço: ${err.message}`);
+                    });
+                }
             };
             exports_1("FuncionarioService", FuncionarioService);
         }

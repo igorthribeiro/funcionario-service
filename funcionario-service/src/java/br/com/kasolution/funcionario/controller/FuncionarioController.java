@@ -67,11 +67,12 @@ public class FuncionarioController {
             throw new RuntimeException(e);
         }
     }
-    @RequestMapping(value = "remove", method = RequestMethod.POST)
+    @RequestMapping(value = "remove/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public void remove(Funcionario funcioario) {
+    public void remove(@PathVariable("id") int id) {
         try (FuncionarioDao dao = new FuncionarioDao()) {
-            dao.excluir(funcioario);
+            Funcionario f = dao.buscarId(id);
+            dao.excluir(f);
         } catch (DaoException e) {
             System.out.println("Erro ao remover! " + e.getMessage());
             throw new RuntimeException(e);

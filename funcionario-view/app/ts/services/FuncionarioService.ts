@@ -46,6 +46,17 @@ export class FuncionarioService {
 
     }
 
+    removeFuncionario (handler: HandlerFunction, id:number):Promise<boolean>  {
+        return fetch(
+            this._urlBase.concat(`remove/${id}`))
+            .then(rs => handler(rs))
+            .then(() => true)
+            .catch((err: Error) => {
+                throw new Error(`Erro ao obter serviço: ${err.message}`)
+            });
+    }
+
+
 }
 
 export interface HandlerFunction {

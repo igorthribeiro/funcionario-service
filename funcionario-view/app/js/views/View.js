@@ -17,6 +17,9 @@ System.register([], function (exports_1, context_1) {
                     }
                     this._elemento.html(template);
                 }
+                getElemento() {
+                    return this._elemento;
+                }
             };
             exports_1("View", View);
         }

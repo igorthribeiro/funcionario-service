@@ -13,6 +13,12 @@ System.register(["./index"], function (exports_1, context_1) {
                 template(model) {
                     return `<p class="alert alert-info">${model}</p>`;
                 }
+                mostrar() {
+                    this.getElemento().fadeIn();
+                }
+                apagar() {
+                    this.getElemento().fadeOut(3000);
+                }
             };
             exports_1("MensagemView", MensagemView);
         }

@@ -16,5 +16,9 @@ export abstract class View<T> {
         this._elemento.html(template);
     }
 
+    getElemento():JQuery {
+        return this._elemento;
+    }
+
     abstract template(model: T): string;
 }

@@ -53,6 +53,12 @@ export class FuncionarioController {
             .buscaFuncionarios(this._isOK, id)
             .then(funcionario => {
                 this._inputCodigo.val(funcionario.codigo);
+                this._inputNome.val(funcionario.nome);
+                this._inputSexo.val(funcionario.sexo);
+                this._inputIdade.val(funcionario.idade);
+                this._inputCidade.val(funcionario.cidade);
+                this._inputEstado.val(funcionario.estado);
+                this._inputSalario.val(funcionario.salario);
             });
     }
     
@@ -73,12 +79,28 @@ export class FuncionarioController {
             .then(r => {
                 if (r == true) {
                     this.lista();
+                    this._mensagemView.mostrar();
                     this._mensagemView.update('Funcionario gravado!');
+                    this._mensagemView.apagar();
                     this._form.each((i:number, e:any) => e.reset());
                 }
             });
     } 
 
+
+    @throttle()
+    remove(id: number) {       
+        this._service.removeFuncionario(this._isOK,id)
+            .then(r => {
+                if (r == true) {
+                    this.lista();
+                    this._mensagemView.mostrar();
+                    this._mensagemView.update('Funcionario excluido!');
+                    this._mensagemView.apagar();
+                    this._form.each((i:number, e:any) => e.reset());
+                }
+            });
+    } 
 
     @throttle()
     lista() {
@@ -89,6 +111,14 @@ export class FuncionarioController {
                 funcionarios
                     .forEach(funcionario => this._funcionarios.adiciona(funcionario));
                 this._funcionariosView.update(this._funcionarios);
+                $('.edita').click((e:Event) => {
+                    let img: Element = <HTMLImageElement> e.target;
+                    this.busca(parseInt(img.getAttribute('value')));
+                });
+                $('.deleta').click((e:Event) => {
+                    let img: Element = <HTMLImageElement> e.target;
+                    this.remove(parseInt(img.getAttribute('value')));
+                });
             });
     }
 
