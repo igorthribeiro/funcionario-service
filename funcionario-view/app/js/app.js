@@ -11,6 +11,7 @@ System.register(["./controllers/FuncionarioController"], function (exports_1, co
         execute: function () {
             controller = new FuncionarioController_1.FuncionarioController();
             $('.form').submit(controller.grava.bind(controller));
+            $('#botao-limpa').click(controller.limpaForm.bind(controller));
         }
     };
 });

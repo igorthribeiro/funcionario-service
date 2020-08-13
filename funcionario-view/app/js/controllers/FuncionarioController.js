@@ -43,6 +43,14 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
                     };
                     this.lista();
                 }
+                limpaForm() {
+                    this._form.each((i, e) => e.reset());
+                    this.goTop();
+                }
+                goTop() {
+                    scrollTo(0, 0);
+                    this._inputNome.focus();
+                }
                 busca(id) {
                     this._service
                         .buscaFuncionarios(this._isOK, id)
@@ -54,8 +62,7 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
                         this._inputCidade.val(funcionario.cidade);
                         this._inputEstado.val(funcionario.estado);
                         this._inputSalario.val(funcionario.salario);
-                        scrollTo(0, 0);
-                        this._inputNome.focus();
+                        this.goTop();
                     });
                 }
                 grava() {
@@ -67,9 +74,8 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
                             this._mensagemView.mostrar();
                             this._mensagemView.update('Funcionario gravado!');
                             this._mensagemView.apagar();
-                            this._form.each((i, e) => e.reset());
-                            scrollTo(0, 0);
-                            this._inputNome.focus();
+                            this.limpaForm();
+                            this.goTop;
                         }
                     });
                 }

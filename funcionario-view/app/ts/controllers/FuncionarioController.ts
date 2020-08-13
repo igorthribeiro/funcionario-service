@@ -47,6 +47,16 @@ export class FuncionarioController {
         this.lista();
     }
 
+    limpaForm() {
+        this._form.each((i:number, e:any) => e.reset());
+        this.goTop();
+    }
+
+    goTop() {
+        scrollTo(0,0);
+        this._inputNome.focus();
+    }
+
     @throttle()
     busca(id: number) {
         this._service
@@ -60,8 +70,7 @@ export class FuncionarioController {
                 this._inputEstado.val(funcionario.estado);
                 this._inputSalario.val(funcionario.salario);
 
-                scrollTo(0,0);
-                this._inputNome.focus();
+                this.goTop();
             });
     }
     
@@ -84,10 +93,9 @@ export class FuncionarioController {
                     this._mensagemView.mostrar();
                     this._mensagemView.update('Funcionario gravado!');
                     this._mensagemView.apagar();
-                    this._form.each((i:number, e:any) => e.reset());
+                    this.limpaForm();
                 
-                    scrollTo(0,0);
-                    this._inputNome.focus();
+                    this.goTop
                 }
             });
     } 
@@ -126,5 +134,4 @@ export class FuncionarioController {
                 });
             });
     }
-
 }
