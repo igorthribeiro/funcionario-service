@@ -70,7 +70,8 @@ export class FuncionarioController {
                 this._inputEstado.val(funcionario.estado);
                 this._inputSalario.val(funcionario.salario);
 
-                this.goTop();
+            this.goTop();
+            
             });
     }
     
@@ -119,13 +120,16 @@ export class FuncionarioController {
                 this._funcionarios = new Funcionarios();
                 funcionarios
                     .forEach(funcionario => this._funcionarios.adiciona(funcionario));
+                
                 this._funcionariosView.update(this._funcionarios);
+
                 $('.edita').click((e:Event) => {
-                    let img: Element = <HTMLImageElement> e.target;
+                    const img: Element = <HTMLImageElement> e.target;
                     this.busca(parseInt(img.getAttribute('value')));
                 });
+                
                 $('.deleta').click((e:Event) => {
-                    let img: Element = <HTMLImageElement> e.target;
+                    const img: Element = <HTMLImageElement> e.target;
                     this.remove(parseInt(img.getAttribute('value')));
                 });
             });

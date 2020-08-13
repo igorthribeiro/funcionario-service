@@ -95,11 +95,11 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
                             .forEach(funcionario => this._funcionarios.adiciona(funcionario));
                         this._funcionariosView.update(this._funcionarios);
                         $('.edita').click((e) => {
-                            let img = e.target;
+                            const img = e.target;
                             this.busca(parseInt(img.getAttribute('value')));
                         });
                         $('.deleta').click((e) => {
-                            let img = e.target;
+                            const img = e.target;
                             this.remove(parseInt(img.getAttribute('value')));
                         });
                     });
