@@ -66,8 +66,6 @@ export class FuncionarioService {
             throw new Error(`Erro ao obter serviço: ${err.message}`)
         }
     }
-
-
 }
 
 export interface HandlerFunction {
