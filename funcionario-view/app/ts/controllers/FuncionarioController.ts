@@ -96,8 +96,7 @@ export class FuncionarioController {
                     this.limpaForm();
                 }
             });
-    } 
-
+    }
 
     @throttle()
     remove(id: number) {   
