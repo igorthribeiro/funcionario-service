@@ -35,7 +35,7 @@ export class FuncionarioService {
 
     }
 
-    buscaFuncionarios(handler: HandlerFunction, id:number): Promise<Funcionario> {
+    buscaFuncionarios(handler: HandlerFunction, id:number): Promise<JSON> {
 
         return fetch(this._urlBase.concat(`get/${id}`))
             .then(res => handler(res))
