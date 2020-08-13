@@ -51,20 +51,20 @@ export class FuncionarioController {
     busca(id: number) {
         this._service
             .buscaFuncionarios(this._isOK, id)
-            .then(funcionarioJSON => {
-                this.populate(this._form, funcionarioJSON);
+            .then(funcionario => {
+                this._inputCodigo.val(funcionario.codigo);
+                this._inputNome.val(funcionario.nome);
+                this._inputSexo.val(funcionario.sexo);
+                this._inputIdade.val(funcionario.idade);
+                this._inputCidade.val(funcionario.cidade);
+                this._inputEstado.val(funcionario.estado);
+                this._inputSalario.val(funcionario.salario);
 
                 scrollTo(0,0);
                 this._inputNome.focus();
             });
     }
     
-    populate(frm:JQuery, data:JSON) {
-        $.each(data, function(key, value){
-          $('[name='+key+']', frm).val(value);
-        });
-    }    
-
     @throttle()
     grava() {       
         const funcionario = new Funcionario(

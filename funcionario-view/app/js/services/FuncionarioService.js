@@ -24,16 +24,16 @@ System.register([], function (exports_1, context_1) {
                         throw new Error(`Erro ao obter serviço: ${err.message}`);
                     });
                 }
-                listaFuncionarios(handler) {
-                    return fetch(this._urlBase.concat('lista'))
+                buscaFuncionarios(handler, id) {
+                    return fetch(this._urlBase.concat(`get/${id}`))
                         .then(res => handler(res))
                         .then(res => res.json())
                         .catch((err) => {
                         throw new Error(`Erro ao obter serviço: ${err.message}`);
                     });
                 }
-                buscaFuncionarios(handler, id) {
-                    return fetch(this._urlBase.concat(`get/${id}`))
+                listaFuncionarios(handler) {
+                    return fetch(this._urlBase.concat('lista'))
                         .then(res => handler(res))
                         .then(res => res.json())
                         .catch((err) => {

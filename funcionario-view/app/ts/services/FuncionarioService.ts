@@ -23,10 +23,10 @@ export class FuncionarioService {
                 throw new Error(`Erro ao obter serviço: ${err.message}`)
             });
     }
+    
+    buscaFuncionarios(handler: HandlerFunction, id:number): Promise<Funcionario> {
 
-    listaFuncionarios(handler: HandlerFunction): Promise<Funcionario[]> {
-
-        return fetch(this._urlBase.concat('lista'))
+        return fetch(this._urlBase.concat(`get/${id}`))
             .then(res => handler(res))
             .then(res => res.json())
             .catch((err: Error) => {
@@ -35,9 +35,9 @@ export class FuncionarioService {
 
     }
 
-    buscaFuncionarios(handler: HandlerFunction, id:number): Promise<JSON> {
+    listaFuncionarios(handler: HandlerFunction): Promise<Funcionario[]> {
 
-        return fetch(this._urlBase.concat(`get/${id}`))
+        return fetch(this._urlBase.concat('lista'))
             .then(res => handler(res))
             .then(res => res.json())
             .catch((err: Error) => {
