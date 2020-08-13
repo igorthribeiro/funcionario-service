@@ -59,6 +59,9 @@ export class FuncionarioController {
                 this._inputCidade.val(funcionario.cidade);
                 this._inputEstado.val(funcionario.estado);
                 this._inputSalario.val(funcionario.salario);
+                
+                scrollTo(0,0);
+                this._inputNome.focus();
             });
     }
     
@@ -83,6 +86,9 @@ export class FuncionarioController {
                     this._mensagemView.update('Funcionario gravado!');
                     this._mensagemView.apagar();
                     this._form.each((i:number, e:any) => e.reset());
+                
+                    scrollTo(0,0);
+                    this._inputNome.focus();
                 }
             });
     } 
