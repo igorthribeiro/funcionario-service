@@ -13,10 +13,9 @@ System.register(["./index"], function (exports_1, context_1) {
                 template(model) {
                     return `<p class="alert alert-info">${model}</p>`;
                 }
-                mostrar() {
+                mostra(mensagem) {
                     this.getElemento().fadeIn();
-                }
-                apagar() {
+                    this.update(mensagem);
                     this.getElemento().fadeOut(3000);
                 }
             };

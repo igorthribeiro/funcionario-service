@@ -90,12 +90,9 @@ export class FuncionarioController {
             .then(r => {
                 if (r == true) {
                     this.lista();
-                    this._mensagemView.mostrar();
-                    this._mensagemView.update('Funcionario gravado!');
-                    this._mensagemView.apagar();
+                    this._mensagemView.mostra('Funcionario gravado!');
+
                     this.limpaForm();
-                
-                    this.goTop();
                 }
             });
     } 
@@ -107,10 +104,9 @@ export class FuncionarioController {
             .then(r => {
                 if (r == true) {
                     this.lista();
-                    this._mensagemView.mostrar();
-                    this._mensagemView.update('Funcionario excluido!');
-                    this._mensagemView.apagar();
-                    this._form.each((i:number, e:any) => e.reset());
+                    this._mensagemView.mostra('Funcionario excluido!');
+                    
+                    this.goTop();
                 }
             });
     } 

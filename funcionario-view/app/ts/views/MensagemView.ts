@@ -6,12 +6,9 @@ export class MensagemView extends View<string> {
         return `<p class="alert alert-info">${model}</p>`;
     }
 
-    mostrar() {
+    mostra(mensagem: string) {
         this.getElemento().fadeIn();
-    }
-    
-    apagar() {
+        this.update(mensagem);
         this.getElemento().fadeOut(3000);
     }
-
 }
