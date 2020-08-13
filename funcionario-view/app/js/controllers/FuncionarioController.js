@@ -75,7 +75,7 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
                             this._mensagemView.update('Funcionario gravado!');
                             this._mensagemView.apagar();
                             this.limpaForm();
-                            this.goTop;
+                            this.goTop();
                         }
                     });
                 }
