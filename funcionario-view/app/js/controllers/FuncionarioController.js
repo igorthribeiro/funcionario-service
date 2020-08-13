@@ -77,14 +77,17 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
                     });
                 }
                 remove(id) {
-                    this._service.removeFuncionario(this._isOK, id)
-                        .then(r => {
-                        if (r == true) {
-                            this.lista();
-                            this._mensagemView.mostra('Funcionario excluido!');
-                            this.goTop();
-                        }
-                    });
+                    let result = confirm("Deseja realmente excluir esse funcinário?");
+                    if (result) {
+                        this._service.removeFuncionario(this._isOK, id)
+                            .then(r => {
+                            if (r == true) {
+                                this.lista();
+                                this._mensagemView.mostra('Funcionario excluido!');
+                                this.goTop();
+                            }
+                        });
+                    }
                 }
                 lista() {
                     this._service

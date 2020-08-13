@@ -71,7 +71,7 @@ export class FuncionarioController {
                 this._inputSalario.val(funcionario.salario);
 
             this.goTop();
-            
+
             });
     }
     
@@ -100,16 +100,19 @@ export class FuncionarioController {
 
 
     @throttle()
-    remove(id: number) {       
-        this._service.removeFuncionario(this._isOK,id)
-            .then(r => {
-                if (r == true) {
-                    this.lista();
-                    this._mensagemView.mostra('Funcionario excluido!');
-                    
-                    this.goTop();
-                }
-            });
+    remove(id: number) {   
+        let result = confirm("Deseja realmente excluir esse funcinário?");
+        if (result) {
+            this._service.removeFuncionario(this._isOK,id)
+                .then(r => {
+                    if (r == true) {
+                        this.lista();
+                        this._mensagemView.mostra('Funcionario excluido!');
+                        
+                        this.goTop();
+                    }
+                });
+        }    
     } 
 
     @throttle()
