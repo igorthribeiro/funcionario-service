@@ -12,8 +12,8 @@ System.register(["./View"], function (exports_1, context_1) {
             FuncionariosView = class FuncionariosView extends View_1.View {
                 template(model) {
                     return `
-        <table class="table table-hover">
-            <thead>
+        <table class="table table-sm table-hover small">
+            <thead class="thead-light">
                 <tr>
                     <th class="text-center">#</th>
                     <th>NOME</th>

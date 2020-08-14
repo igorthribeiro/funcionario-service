@@ -5,8 +5,8 @@ export class FuncionariosView extends View<Funcionarios> {
 
     template(model: Funcionarios): string {
         return `
-        <table class="table table-hover">
-            <thead>
+        <table class="table table-sm table-hover small">
+            <thead class="thead-light">
                 <tr>
                     <th class="text-center">#</th>
                     <th>NOME</th>
