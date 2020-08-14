@@ -1,4 +1,4 @@
-System.register(["./Funcionario"], function (exports_1, context_1) {
+System.register(["./Funcionario", "./Funcionarios"], function (exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     function exportStar_1(m) {
@@ -12,6 +12,9 @@ System.register(["./Funcionario"], function (exports_1, context_1) {
         setters: [
             function (Funcionario_1_1) {
                 exportStar_1(Funcionario_1_1);
+            },
+            function (Funcionarios_1_1) {
+                exportStar_1(Funcionarios_1_1);
             }
         ],
         execute: function () {

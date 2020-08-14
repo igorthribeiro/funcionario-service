@@ -2,7 +2,7 @@ import { Funcionario } from '../models/index'
 import { FuncionarioService, HandlerFunction } from '../services/index';
 import { domInject, throttle } from '../helpers/decorators/index';
 import { MensagemView, FuncionariosView } from '../views/index';
-import { Funcionarios } from '../models/Funcionarios';
+import { Funcionarios } from '../models/index';
 
 export class FuncionarioController {
 

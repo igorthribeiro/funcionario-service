@@ -67,7 +67,7 @@ public class FuncionarioController {
             throw new RuntimeException(e);
         }
     }
-    @RequestMapping(value = "remove/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "remove/{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void remove(@PathVariable("id") int id) {
         try (FuncionarioDao dao = new FuncionarioDao()) {

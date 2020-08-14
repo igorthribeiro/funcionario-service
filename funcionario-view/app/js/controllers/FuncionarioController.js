@@ -1,4 +1,4 @@
-System.register(["../models/index", "../services/index", "../helpers/decorators/index", "../views/index", "../models/Funcionarios"], function (exports_1, context_1) {
+System.register(["../models/index", "../services/index", "../helpers/decorators/index", "../views/index"], function (exports_1, context_1) {
     "use strict";
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -7,11 +7,12 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
     var __moduleName = context_1 && context_1.id;
-    var index_1, index_2, index_3, index_4, Funcionarios_1, FuncionarioController;
+    var index_1, index_2, index_3, index_4, index_5, FuncionarioController;
     return {
         setters: [
             function (index_1_1) {
                 index_1 = index_1_1;
+                index_5 = index_1_1;
             },
             function (index_2_1) {
                 index_2 = index_2_1;
@@ -21,15 +22,12 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
             },
             function (index_4_1) {
                 index_4 = index_4_1;
-            },
-            function (Funcionarios_1_1) {
-                Funcionarios_1 = Funcionarios_1_1;
             }
         ],
         execute: function () {
             FuncionarioController = class FuncionarioController {
                 constructor() {
-                    this._funcionarios = new Funcionarios_1.Funcionarios();
+                    this._funcionarios = new index_5.Funcionarios();
                     this._funcionariosView = new index_4.FuncionariosView('#funcionariosView');
                     this._mensagemView = new index_4.MensagemView('#mensagemView');
                     this._service = new index_2.FuncionarioService();
@@ -93,7 +91,7 @@ System.register(["../models/index", "../services/index", "../helpers/decorators/
                     this._service
                         .listaFuncionarios(this._isOK)
                         .then(funcionarios => {
-                        this._funcionarios = new Funcionarios_1.Funcionarios();
+                        this._funcionarios = new index_5.Funcionarios();
                         funcionarios
                             .forEach(funcionario => this._funcionarios.adiciona(funcionario));
                         this._funcionariosView.update(this._funcionarios);
