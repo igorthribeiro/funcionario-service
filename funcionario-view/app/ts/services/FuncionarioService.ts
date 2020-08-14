@@ -57,7 +57,8 @@ export class FuncionarioService {
     async removeFuncionario (handler: HandlerFunction, id:number):Promise<boolean>  {
         
         try {
-            const rs = await fetch(this._urlBase.concat(`remove/${id}`))
+            const rs = await fetch(this._urlBase.concat(`remove/${id}`), { method: 'DELETE' }
+            )
                 .then(rs => handler(rs))
                 .then(() => true);
 

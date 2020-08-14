@@ -51,7 +51,7 @@ System.register([], function (exports_1, context_1) {
                 }
                 async removeFuncionario(handler, id) {
                     try {
-                        const rs = await fetch(this._urlBase.concat(`remove/${id}`))
+                        const rs = await fetch(this._urlBase.concat(`remove/${id}`), { method: 'DELETE' })
                             .then(rs => handler(rs))
                             .then(() => true);
                         return rs;
