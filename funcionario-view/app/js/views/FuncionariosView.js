@@ -28,9 +28,9 @@ System.register(["./View"], function (exports_1, context_1) {
                 ${model.paraArray().map(f => `
                         <tr>
                             <th class="text-center">${(f.codigo).toString().padStart(4, "0")}</th>
-                            <td>${f.nome}</td>
-                            <td>${f.cidade}</td>
-                            <td>${f.estado}</td>
+                            <td class="text-capitalize">${f.nome}</td>
+                            <td class="text-uppercase">${f.cidade}</td>
+                            <td class="text-uppercase">${f.estado}</td>
                             <td>${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(f.salario)}</td>
                             <td class="text-center">
                                 <img class="edita" value="${f.codigo}" src="res/img/update.png" alt="Alterar" width="20" height="20"/>
