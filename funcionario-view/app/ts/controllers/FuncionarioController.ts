@@ -62,18 +62,18 @@ export class FuncionarioController {
         this._service
             .buscaFuncionarios(this._isOK, id)
             .then(funcionario => {
-                this._inputCodigo.val(funcionario.codigo);
-                this._inputNome.val(funcionario.nome);
-                this._inputSexo.val(funcionario.sexo);
-                this._inputIdade.val(funcionario.idade);
-                this._inputCidade.val(funcionario.cidade);
-                this._inputEstado.val(funcionario.estado);
-                this._inputSalario.val(funcionario.salario);
+                this.populate(this._form, JSON.stringify(funcionario))
 
-            this.goTop();
+                this.goTop();
 
             });
     }
+
+    populate(frm: JQuery, data: string) {
+        $.each(JSON.parse(data), (k, v) => {
+            $(`[name=${k}]`, frm).val(v);
+        });
+    };
     
     @throttle()
     grava() {       
