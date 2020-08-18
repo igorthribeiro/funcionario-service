@@ -4,7 +4,8 @@ module.exports = {
     entry: './app/ts/app.ts',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: 'dist'
     },
     module: {
         rules: [
@@ -23,5 +24,5 @@ module.exports = {
 }
 
 if (process.env.NODE_ENV == 'production') {
-    
+
 }    
