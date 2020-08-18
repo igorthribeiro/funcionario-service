@@ -19,4 +19,9 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js']
     }
+
 }
+
+if (process.env.NODE_ENV == 'production') {
+    
+}    
