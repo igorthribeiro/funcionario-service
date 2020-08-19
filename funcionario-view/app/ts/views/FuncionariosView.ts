@@ -27,11 +27,11 @@ export class FuncionariosView extends View<Funcionarios> {
                             <td class="text-uppercase">${f.estado}</td>
                             <td>${new Intl.NumberFormat('pt-BR',
                                     { style: 'currency', currency: 'BRL' }).format(f.salario)}</td>
-                            <td class="text-center">
-                                <img class="edita" value="${f.codigo}" src="res/img/update.png" alt="Alterar" width="20" height="20"/>
+                            <td class="text-center">                                
+                                <i class="edita far fa-edit" value="${f.codigo}"></i>
                             </td>
-                            <td class="text-center">
-                                <img class="deleta" value="${f.codigo}" src="res/img/delete.png" alt="Alterar" width="20" height="20"/>
+                            <td class="text-center">                                
+                                <i class="deleta far fa-trash-alt" value="${f.codigo}"></i>
                             </td>
                         </tr>
                     `

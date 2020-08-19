@@ -5,17 +5,33 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "tsc",
-    "watch": "tsc -w",
-    "server": "lite-server --baseDir=app",
-    "start": "concurrently \"npm run watch\" \"npm run server\""
+    "build-dev": "webpack --mode development --config webpack.config.js",
+    "build-prod": "cross-env NODE_ENV=production webpack --mode production --config webpack.config.js",
+    "start": "webpack-dev-server --mode development"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/jquery": "^2.0.42",
-    "concurrently": "^3.4.0",
-    "lite-server": "^2.3.0",
-    "typescript": "^2.3.2"
+    "cross-env": "^5.0.1",
+    "css-loader": "^0.28.9",
+    "cssnano": "^3.10.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "optimize-css-assets-webpack-plugin": "^2.0.0",
+    "style-loader": "^0.19.1",
+    "ts-loader": "^4.4.2",
+    "typescript": "^3.0.1",
+    "url-loader": "^0.5.9",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "bootstrap": "^4.0.0",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.3"
   }
 }
