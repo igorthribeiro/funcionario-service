@@ -80,19 +80,31 @@ module.exports = {
             },
             { 
                 test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, 
-                loader: 'url-loader?limit=10000&mimetype=application/font-woff' 
+                loader: 'url-loader?limit=10000&mimetype=application/font-woff',
+                options: {
+                    outputPath: 'res'
+                }   
             },
             { 
                 test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, 
-                loader: 'url-loader?limit=10000&mimetype=application/octet-stream'
+                loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
+                options: {
+                    outputPath: 'res'
+                }  
             },
             { 
                 test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, 
-                loader: 'file-loader' 
+                loader: 'file-loader',
+                options: {
+                    outputPath: 'res'
+                }  
             },
             { 
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, 
-                loader: 'url-loader?limit=10000&mimetype=image/svg+xml' 
+                loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
+                options: {
+                    outputPath: 'res'
+                } 
             }
         ]
     },
