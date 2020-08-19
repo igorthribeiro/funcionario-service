@@ -31,11 +31,26 @@ if (process.env.NODE_ENV === 'production') {
 }    
 
 module.exports = {
-    entry: './app/ts/app.ts',
+    entry: {
+        app: './app/ts/app.ts',
+        vendor: ['jquery', 'bootstrap']
+    },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
+        chunkFilename: '[name].chunk.bundle.js',
         publicPath: 'dist'
+    },
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                chunks: 'initial',
+                name: 'vendor',
+                test: 'vendor',
+                enforce: 'true'
+            }
+        },
+        runtimeChunk: true
     },
     module: {
         rules: [
