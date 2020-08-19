@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === 'production') {
 module.exports = {
     entry: {
         app: './app/ts/app.ts',
-        vendor: ['jquery', 'bootstrap']
+        vendor: ['jquery', 'bootstrap', '@fortawesome/fontawesome-free']
     },
     output: {
         filename: '[name].bundle.js',

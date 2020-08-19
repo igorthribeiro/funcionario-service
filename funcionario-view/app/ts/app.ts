@@ -1,7 +1,8 @@
 import { FuncionarioController } from './controllers/FuncionarioController'
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/js/dist/modal.js'
+import 'bootstrap/js/dist/modal.js';
+import '@fortawesome/fontawesome-free/css/all.css'
 
 
 const controller = new FuncionarioController();
