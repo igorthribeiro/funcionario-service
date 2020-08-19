@@ -71,7 +71,8 @@ export class FuncionarioController {
 
     populate(frm: JQuery, data: string) {
         $.each(JSON.parse(data), (k, v) => {
-            $(`[name=${k}]`, frm).val(v);
+            //localiza o elemento no frm e altera o valor
+            $(`[name=${k}]`, frm).val(v); 
         });
     };
     
