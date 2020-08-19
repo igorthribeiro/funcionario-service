@@ -1,9 +1,24 @@
 const path = require('path');
 const extractTextPlugin = require('extract-text-webpack-plugin');
+const optimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 let plugins = [];
 
 plugins.push(new extractTextPlugin("styles.css"));
+
+if (process.env.NODE_ENV === 'production') {
+
+    plugins.push(new optimizeCSSAssetsPlugin({
+        cssProcessor: require('cssnano'),
+        cssProcessorOptions: {
+            discardComments: {
+                removeAll: true
+            }
+        },
+        canPrint: true
+    }));
+
+}    
 
 module.exports = {
     entry: './app/ts/app.ts',
@@ -52,7 +67,3 @@ module.exports = {
     plugins
 
 }
-
-if (process.env.NODE_ENV == 'production') {
-
-}    
