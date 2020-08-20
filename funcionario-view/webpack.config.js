@@ -42,13 +42,8 @@ if (process.env.NODE_ENV === 'production') {
         },
         canPrint: true
     }));
-
 } 
 
-plugins.push(new fontminPlugin({    
-    autodetected: true,
-    glyphs: ['\uf0c8'],
-}));
 
 plugins.push(new purifyCSSPlugin({
     paths: globAll.sync([
@@ -60,6 +55,10 @@ plugins.push(new purifyCSSPlugin({
     purifyOptions: {
         whitelist:[]
     }
+}));
+
+plugins.push(new fontminPlugin({    
+    autodetect: true,
 }));
 
 module.exports = {
