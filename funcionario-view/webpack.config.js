@@ -64,7 +64,7 @@ plugins.push(new fontminPlugin({
 module.exports = {
     entry: {
         app: './app/ts/app.ts',
-        vendor: ['jquery', 'bootstrap', '@fortawesome/fontawesome-free']
+        vendor: ['jquery', 'popper.js', 'bootstrap', '@fortawesome/fontawesome-free']
     },
     output: {
         filename: '[name].bundle.js',
