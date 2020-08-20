@@ -3,6 +3,9 @@ const extractTextPlugin = require('extract-text-webpack-plugin');
 const optimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const fontminPlugin = require('fontmin-webpack');
+const purifyCSSPlugin = require('purifycss-webpack');
+const globAll = require('glob-all');
 
 let plugins = [];
 
@@ -40,7 +43,24 @@ if (process.env.NODE_ENV === 'production') {
         canPrint: true
     }));
 
-}    
+} 
+
+plugins.push(new fontminPlugin({    
+    autodetected: true,
+    glyphs: ['\uf0c8'],
+}));
+
+plugins.push(new purifyCSSPlugin({
+    paths: globAll.sync([
+        path.join(__dirname, '*.html'),
+        path.join(__dirname, 'app/*.ts'),
+        path.join(__dirname, 'app/**/*.ts')
+    ]),
+    minimize: true,
+    purifyOptions: {
+        whitelist:[]
+    }
+}));
 
 module.exports = {
     entry: {
@@ -80,32 +100,52 @@ module.exports = {
             },
             { 
                 test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, 
-                loader: 'url-loader?limit=10000&mimetype=application/font-woff',
-                options: {
-                    outputPath: 'res'
-                }   
+                use: [
+                    {
+                      loader: 'file-loader',
+                      options: {
+                        name: '[name].[ext]',
+                        outputPath: 'fonts/'
+                      }
+                    }
+                  ]
             },
             { 
                 test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, 
-                loader: 'url-loader?limit=10000&mimetype=application/octet-stream',
-                options: {
-                    outputPath: 'res'
-                }  
-            },
+                use: [
+                    {
+                      loader: 'file-loader',
+                      options: {
+                        name: '[name].[ext]',
+                        outputPath: 'fonts/'
+                      }
+                    }
+                  ]
+             },
             { 
                 test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, 
-                loader: 'file-loader',
-                options: {
-                    outputPath: 'res'
-                }  
-            },
+                use: [
+                    {
+                      loader: 'file-loader',
+                      options: {
+                        name: '[name].[ext]',
+                        outputPath: 'fonts/'
+                      }
+                    }
+                  ]
+             },
             { 
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, 
-                loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
-                options: {
-                    outputPath: 'res'
-                } 
-            }
+                use: [
+                    {
+                      loader: 'file-loader',
+                      options: {
+                        name: '[name].[ext]',
+                        outputPath: 'fonts/'
+                      }
+                    }
+                  ]
+             }
         ]
     },
     resolve: {

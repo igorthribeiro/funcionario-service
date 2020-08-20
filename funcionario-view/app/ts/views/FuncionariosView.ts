@@ -28,10 +28,10 @@ export class FuncionariosView extends View<Funcionarios> {
                             <td>${new Intl.NumberFormat('pt-BR',
                                     { style: 'currency', currency: 'BRL' }).format(f.salario)}</td>
                             <td class="text-center">                                
-                                <i class="edita far fa-edit" value="${f.codigo}"></i>
+                                <i class="edita far fa-edit fa-lg" value="${f.codigo}"></i>
                             </td>
                             <td class="text-center">                                
-                                <i class="deleta far fa-trash-alt" value="${f.codigo}"></i>
+                                <i class="deleta far fa-trash-alt fa-lg" value="${f.codigo}"></i>
                             </td>
                         </tr>
                     `
