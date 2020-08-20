@@ -67,17 +67,19 @@ module.exports = {
         another: ['jquery', 'popper.js', 'bootstrap', '@fortawesome/fontawesome-free']
     },
     output: {
-        filename: '[name].bundle.js',
-        chunkFilename: '[name].bundle.js',
+        filename: 'js/[name].bundle.js',
+        chunkFilename: 'js/[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
     },
     optimization: {
         splitChunks: {
             cacheGroups: {
+                commons: {
+                    test:/[\\/]node_modules[\\/]/,                    
+                },
                 chunks: 'all',
             }
         },
-        runtimeChunk: true,
     },
     module: {
         rules: [
