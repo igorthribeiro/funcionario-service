@@ -64,23 +64,20 @@ plugins.push(new fontminPlugin({
 module.exports = {
     entry: {
         app: './app/ts/app.ts',
-        vendor: ['jquery', 'popper.js', 'bootstrap', '@fortawesome/fontawesome-free']
+        another: ['jquery', 'popper.js', 'bootstrap', '@fortawesome/fontawesome-free']
     },
     output: {
         filename: '[name].bundle.js',
+        chunkFilename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        chunkFilename: '[name].chunk.bundle.js'
     },
     optimization: {
         splitChunks: {
             cacheGroups: {
-                chunks: 'initial',
-                name: 'vendor',
-                test: 'vendor',
-                enforce: 'true'
+                chunks: 'all',
             }
         },
-        runtimeChunk: false
+        runtimeChunk: true,
     },
     module: {
         rules: [
