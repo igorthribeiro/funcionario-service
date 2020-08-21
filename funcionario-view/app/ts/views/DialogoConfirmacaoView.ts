@@ -5,7 +5,7 @@ export class DialogoConfirmacaoView extends View<string> {
 
     template(model: string): string {
         return `<!-- Modal -->
-                <div class="modal fade" id="confirmacaoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="confirmacaoModal" tabindex="-1" role="dialog" aria-labelledby="confirmacaoModal" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                     <div class="modal-header">
@@ -29,7 +29,10 @@ export class DialogoConfirmacaoView extends View<string> {
     mostra(mensagem: string, acaoConfirma: AcaoConfirma) {
         this.update(mensagem);
         $('#btnConfirmar').click(acaoConfirma);
-        $('#confirmacaoModal').modal('show');
+        $('#confirmacaoModal').modal({
+            backdrop: true,
+            show: true
+        });
     }
     
     fecha() {
