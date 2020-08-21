@@ -4,14 +4,11 @@ import { View } from './View';
 export class DialogoConfirmacaoView extends View<string> {
 
     template(model: string): string {
-        return `<div class="modal fade" id="confirmacaoModal" tabindex="-1" role="dialog" aria-labelledby="confirmacaoModal" aria-hidden="true">
-                <div class="modal-dialog" role="document">
+        return `<div class="modal" id="confirmacaoModal">
+                <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="confirmacaoModalLabel">Confirma&ccedil;&atilde;o</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
                     </div>
                     <div class="modal-body">
                         ${model}
