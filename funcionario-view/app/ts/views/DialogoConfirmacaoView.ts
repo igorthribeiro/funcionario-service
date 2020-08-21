@@ -23,7 +23,7 @@ export class DialogoConfirmacaoView extends View<string> {
                     </div>
                     </div>
                 </div>
-                </div>`
+                </div>`;
     }
     
     mostra(mensagem: string, acaoConfirma: AcaoConfirma) {
