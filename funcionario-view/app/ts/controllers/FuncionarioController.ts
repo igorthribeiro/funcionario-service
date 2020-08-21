@@ -93,7 +93,7 @@ export class FuncionarioController {
             .then(r => {
                 if (r == true) {
                     this.lista();
-                    this._mensagemView.mostra('Funcionario gravado!');
+                    this._mensagemView.mostra('Funcionário gravado!');
 
                     this.limpaForm();
                 }
@@ -107,7 +107,7 @@ export class FuncionarioController {
                 .then(r => {
                     if (r == true) {
                         this.lista();
-                        this._mensagemView.mostra('Funcionario excluido!');
+                        this._mensagemView.mostra('Funcionário excluído!');
                         
                         this.goTop();
                     }
@@ -115,7 +115,7 @@ export class FuncionarioController {
             this._dialogConfirmacaoView.fecha();
         };
         
-        this._dialogConfirmacaoView.mostra(`Confirma a exclusão do funcionario #${valor}?`, acaoConfirma);
+        this._dialogConfirmacaoView.mostra(`Confirma a exclusão do funcionário #${valor}?`, acaoConfirma);
 
     } 
 
