@@ -1,5 +1,5 @@
 const path = require('path');
-const extractTextPlugin = require('extract-text-webpack-plugin');
+const miniCssExtractPlugin = require('mini-css-extract-plugin');
 const optimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
@@ -20,7 +20,10 @@ plugins.push(new htmlWebpackPlugin({
     template: __dirname + '/main.html'
 }))
 
-plugins.push(new extractTextPlugin("styles.css"));
+plugins.push(new miniCssExtractPlugin({
+    filename: '[name].css',
+    chunkFilename: '[id].css',
+}));
 
 plugins.push(
     new webpack.ProvidePlugin({
@@ -91,10 +94,17 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: extractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: 'css-loader'
-                })
+                use: [
+                    {
+                      loader: miniCssExtractPlugin.loader,
+                      options: {
+                        publicPath: (resourcePath, context) => {
+                          return path.relative(path.dirname(resourcePath), context) + '/';
+                        },
+                      },
+                    },
+                    'css-loader',
+                ],
             },
             { 
                 test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, 
