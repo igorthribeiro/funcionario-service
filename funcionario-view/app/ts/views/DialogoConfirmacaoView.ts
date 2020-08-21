@@ -1,11 +1,10 @@
-import { View } from './index';
 import 'bootstrap/js/dist/modal.js';
+import { View } from './View';
 
 export class DialogoConfirmacaoView extends View<string> {
 
     template(model: string): string {
-        return `<!-- Modal -->
-                <div class="modal fade" id="confirmacaoModal" tabindex="-1" role="dialog" aria-labelledby="confirmacaoModal" aria-hidden="true">
+        return `<div class="modal fade" id="confirmacaoModal" tabindex="-1" role="dialog" aria-labelledby="confirmacaoModal" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                     <div class="modal-header">

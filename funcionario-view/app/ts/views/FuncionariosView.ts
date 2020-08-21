@@ -1,5 +1,5 @@
-import { View } from './View';
-import { Funcionarios } from '../models/Funcionarios';
+import { View } from './index';
+import { Funcionarios } from '../models/index';
 
 export class FuncionariosView extends View<Funcionarios> {
 

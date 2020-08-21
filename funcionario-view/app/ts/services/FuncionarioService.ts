@@ -1,4 +1,4 @@
-import { Funcionario } from '../models/Funcionario';
+import { Funcionario } from '../models/index';
 
 export class FuncionarioService {
 
