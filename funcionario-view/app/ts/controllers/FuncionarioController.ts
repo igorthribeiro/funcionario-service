@@ -1,7 +1,7 @@
 import { Funcionario } from '../models/index'
 import { FuncionarioService, HandlerFunction } from '../services/index';
 import { domInject, throttle } from '../helpers/decorators/index';
-import { MensagemView, FuncionariosView } from '../views/index';
+import { MensagemView, FuncionariosView, DialogoConfirmacaoView } from '../views/index';
 import { Funcionarios } from '../models/index';
 
 export class FuncionarioController {
@@ -33,6 +33,7 @@ export class FuncionarioController {
     private _funcionarios = new Funcionarios();
     private _funcionariosView = new FuncionariosView('#funcionariosView');
     private _mensagemView = new MensagemView('#mensagemView');
+    private _dialogConfirmacaoView = new DialogoConfirmacaoView('#dialogoView');
     private _service = new FuncionarioService();
 
     private _isOK: HandlerFunction = (res:Response) => {
@@ -58,9 +59,9 @@ export class FuncionarioController {
     }
 
     @throttle()
-    busca(id: number) {
+    busca(value: string) {
         this._service
-            .buscaFuncionarios(this._isOK, id)
+            .buscaFuncionarios(this._isOK, parseInt(value))
             .then(funcionario => {
                 this.populate(this._form, JSON.stringify(funcionario))
 
@@ -100,10 +101,9 @@ export class FuncionarioController {
     }
 
     @throttle()
-    remove(id: number) {   
-        let result = confirm("Deseja realmente excluir esse funcinário?");
-        if (result) {
-            this._service.removeFuncionario(this._isOK,id)
+    remove(valor: string) { 
+        let acaoConfirma = () => {
+            this._service.removeFuncionario(this._isOK, parseInt(valor))
                 .then(r => {
                     if (r == true) {
                         this.lista();
@@ -112,7 +112,11 @@ export class FuncionarioController {
                         this.goTop();
                     }
                 });
-        }    
+            this._dialogConfirmacaoView.fecha();
+        }
+        
+        this._dialogConfirmacaoView.mostra(`Confirma a exclusão do funcionario #${valor}?`, acaoConfirma);
+
     } 
 
     @throttle()
@@ -127,13 +131,13 @@ export class FuncionarioController {
                 this._funcionariosView.update(this._funcionarios);
 
                 $('.edita').click((e:Event) => {
-                    const img: Element = <HTMLImageElement> e.target;
-                    this.busca(parseInt(img.getAttribute('value')));
+                    const elemento: Element = <HTMLElement> e.target;
+                    this.busca(elemento.getAttribute('value'));
                 });
                 
                 $('.deleta').click((e:Event) => {
-                    const img: Element = <HTMLImageElement> e.target;
-                    this.remove(parseInt(img.getAttribute('value')));
+                    const elemento: Element = <HTMLElement> e.target;
+                    this.remove(elemento.getAttribute('value'));
                 });
             });
     }
